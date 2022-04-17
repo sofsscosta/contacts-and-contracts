@@ -1,13 +1,15 @@
 import * as React from 'react'
-import Tabs from './components/Tabs'
+import { Tabs, Container } from './components'
 import './App.css';
 
 const App = () => {
   return (
     <div className="App">
-      <Tabs/>
+      <Container>
+        <Tabs/>
+      </Container>
     </div>
-  );
+  )
 }
 
 export default App;
