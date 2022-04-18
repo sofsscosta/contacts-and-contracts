@@ -1,11 +1,10 @@
-import React, {useEffect, useState} from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import Contacts from './Contacts'
 import Contracts from './Contracts'
-import { getContacts } from '../../api';
 
 const TabPanel = (props) => {
   const { children, value, index, ...other } = props;
@@ -19,7 +18,7 @@ const TabPanel = (props) => {
       {...other}
     >
       {value === index && (
-        <Box sx={{ p: 3, height: '80%', width: '80%' }}>
+        <Box sx={{ m: 3, height: '80%', width: '100%' }}>
           {children}
         </Box>
       )}
@@ -52,13 +51,6 @@ const VerticalTabs = () => {
     { title: 'Contacts', content: <Contacts/> },
     { title: 'Contracts', content: <Contracts/> }
   ]
-
-  useEffect(() => {
-    (async () => {
-      const contacts = await getContacts()
-      console.log(contacts)
-    })()
-  }, [])
 
   return (
     <Box
