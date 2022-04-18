@@ -2,8 +2,10 @@ import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-import Typography from '@mui/material/Typography';
+import {Typography} from '@mui/material';
 import Box from '@mui/material/Box';
+import Contacts from './Contacts'
+import Contracts from './Contracts'
 
 const TabPanel = (props) => {
   const { children, value, index, ...other } = props;
@@ -17,8 +19,8 @@ const TabPanel = (props) => {
       {...other}
     >
       {value === index && (
-        <Box sx={{ p: 3 }}>
-          <Typography>{children}</Typography>
+        <Box sx={{ p: 3, height: '80%', width: '80%' }}>
+          {children}
         </Box>
       )}
     </div>
@@ -35,6 +37,7 @@ const tabsProps = (index) => {
   return {
     id: `vertical-tab-${index}`,
     'aria-controls': `vertical-tabpanel-${index}`,
+    key: index
   };
 }
 
@@ -45,7 +48,10 @@ const VerticalTabs = () => {
     setValue(newValue);
   };
 
-  const options = ['Contacts', 'Contracts']
+  const options = [
+    { title: 'Contacts', content: <Contacts/> },
+    { title: 'Contracts', content: <Contracts/> }
+  ]
 
   return (
     <Box
@@ -60,12 +66,12 @@ const VerticalTabs = () => {
         sx={{ borderRight: 1, borderColor: 'divider' }}
       >
         {options.map((el, index) => (
-          <Tab label={el} sx={{height: '20vh'}} {...tabsProps(index)} />
+          <Tab label={el.title} sx={{height: '20vh'}} {...tabsProps(index)} />
         ))}
       </Tabs>
         {options.map((el, index) => (
-          <TabPanel value={value} index={index}>
-            <Typography fontSize={24}>{el}</Typography>
+          <TabPanel key={index} value={value} index={index} style={{width: '80%'}}>
+            {el.content}
           </TabPanel>
         ))}
     </Box>
