@@ -41,9 +41,11 @@ const tabsProps = (index) => {
 const VerticalTabs = () => {
   const [value, setValue] = useState(0);
 
-  const handleChange = (event, newValue) => {
+  const handleChange = (_, newValue) => {
     setValue(newValue);
   };
+
+  const options = ['Contacts', 'Contracts']
 
   return (
     <Box
@@ -57,15 +59,15 @@ const VerticalTabs = () => {
         aria-label="Vertical tabs example"
         sx={{ borderRight: 1, borderColor: 'divider' }}
       >
-        <Tab label="Contacts" sx={{height: '20vh'}} {...tabsProps(0)} />
-        <Tab label="Contracts" sx={{height: '20vh'}} {...tabsProps(1)} />
+        {options.map((el, index) => (
+          <Tab label={el} sx={{height: '20vh'}} {...tabsProps(index)} />
+        ))}
       </Tabs>
-      <TabPanel value={value} index={0}>
-        Contacts
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-        Contracts
-      </TabPanel>
+        {options.map((el, index) => (
+          <TabPanel value={value} index={index}>
+            <Typography fontSize={24}>{el}</Typography>
+          </TabPanel>
+        ))}
     </Box>
   );
 }
