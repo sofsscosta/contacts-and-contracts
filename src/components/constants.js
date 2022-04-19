@@ -1,3 +1,5 @@
 const menuOptions = ['contacts', 'contracts']
+const drawerWidth = 240
+const headerHeight = 64
 
-export { menuOptions }
+export { menuOptions, drawerWidth, headerHeight }

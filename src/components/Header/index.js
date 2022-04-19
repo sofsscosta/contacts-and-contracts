@@ -1,32 +1,22 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
-import CssBaseline from '@mui/material/CssBaseline';
 import Divider from '@mui/material/Divider';
 import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
-import Toolbar from '@mui/material/Toolbar';
 import { capitalizeFirstLetter } from '../../utils';
 import { Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { menuOptions } from '../constants';
 
-const drawerWidth = 240;
-
-const ResponsiveDrawer = (props) => {
-  const { window } = props;
-  const [mobileOpen, setMobileOpen] = useState(false);
-
-  const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen);
-  };
+const ResponsiveDrawer = ({ drawerWidth, headerHeight }) => {
 
   const drawer = (
     <>
-      <Toolbar/>
+      <Box sx={{height: headerHeight, display: 'flex', alignItems: 'center', ml: 3}}/>
       <Divider/>
       <List>
         {menuOptions.map((text, index) => (
@@ -41,51 +31,24 @@ const ResponsiveDrawer = (props) => {
     </>
   );
 
-  const container = window !== undefined ? () => window().document.body : undefined;
-
   return (
     <Box sx={{ display: 'flex' }}>
-      <CssBaseline />
       <AppBar
         position="fixed"
         sx={{
-          width: { sm: `calc(100% - ${drawerWidth}px)` },
-          ml: { sm: `${drawerWidth}px` },
-        }}
+          width: `calc(100% - ${drawerWidth}px)`,
+          ml: `${drawerWidth}px`}}
       >
-        <Toolbar>
-          <Typography variant="h6" noWrap component="div">
-            Responsive drawer
+        <Box sx={{height: headerHeight, display: 'flex', alignItems: 'center', ml: 3}}>
+          <Typography variant="h6" component="div">
+            Contacts & Contracts
           </Typography>
-        </Toolbar>
+        </Box>
       </AppBar>
-      <Box
-        component="nav"
-        sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
-        aria-label="mailbox folders"
-      >
-        {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
-        <Drawer
-          container={container}
-          variant="temporary"
-          open={mobileOpen}
-          onClose={handleDrawerToggle}
-          ModalProps={{
-            keepMounted: true, // Better open performance on mobile.
-          }}
-          sx={{
-            display: { xs: 'block', sm: 'none' },
-            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
-          }}
-        >
-          {drawer}
-        </Drawer>
+      <Box component="nav">
         <Drawer
           variant="permanent"
-          sx={{
-            display: { xs: 'none', sm: 'block' },
-            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
-          }}
+          sx={{'& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth }}}
           open
         >
           {drawer}
@@ -93,10 +56,8 @@ const ResponsiveDrawer = (props) => {
       </Box>
       <Box
         component="main"
-        sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
+        sx={{ flexGrow: 1, p: 3, width: `calc(100% - ${drawerWidth}px)`, mt:2}}
       >
-        <Toolbar />
-
       </Box>
     </Box>
   );
