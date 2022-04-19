@@ -1,3 +1,3 @@
-const tabsTitles = ['Contacts', 'Contracts']
+const menuOptions = ['contacts', 'contracts']
 
-export { tabsTitles }
+export { menuOptions }

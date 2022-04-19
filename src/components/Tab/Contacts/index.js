@@ -58,7 +58,7 @@ const Contacts = () => {
             `${params.row.firstName || ''} ${params.row.lastName || ''}`,
         },
     ];
-    
+
     const newRows = () => {
         const rows = []
         for (let i = 0; i < contacts.length; i++) {
@@ -102,7 +102,7 @@ const Contacts = () => {
   return (
     <>
       <DataGrid
-        rows={newRows}
+        rows={newRows()}
         columns={columns}
         checkboxSelection
         disableSelectionOnClick

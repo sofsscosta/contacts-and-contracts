@@ -1,11 +1,28 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import ReactDOM from 'react-dom/client';
+import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
+import { Contacts } from './components';
+import { Contracts } from './components';
+import Header from './components/Header'
+
+const Routing = () => {
+  return(
+    <Router>
+      <Header/>
+      <Routes>
+        <Route exact path="/" element={<App/>} />
+        <Route path="/contacts" element={<Contacts/>} />
+        <Route path="/contracts" element={<Contracts/>} />
+      </Routes>
+    </Router>
+  )
+}
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<App />);
+root.render(<Routing/>);
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

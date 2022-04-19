@@ -1,9 +1,10 @@
-import React, { useMemo, useState } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
-import { tabsTitles } from '../constants';
+import { menuOptions } from '../constants';
+import { Link } from 'react-router-dom';
 
 const TabPanel = (props) => {
   const { children, value, index, tabsOptions, ...other } = props;
@@ -37,7 +38,6 @@ const tabsProps = (index) => {
   return {
     id: `vertical-tab-${index}`,
     'aria-controls': `vertical-tabpanel-${index}`,
-    key: index
   };
 }
 
@@ -63,8 +63,10 @@ const VerticalTabs = (props) => {
         aria-label="Vertical tabs"
         sx={{ borderRight: 1, borderColor: 'divider' }}
       >
-        {tabsTitles.map((el, index) => (
-          <Tab label={el} sx={{height: '20vh'}} {...tabsProps(index)} />
+        {menuOptions.map((el, index) => (
+          <Link to={`/${el}`} key={index}>
+            <Tab label={el} sx={{height: '20vh'}} {...tabsProps(index)} />
+          </Link>
         ))}
       </Tabs>
         {children.map((child, index) => (
