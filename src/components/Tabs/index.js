@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
-import Contacts from './Contacts'
-import Contracts from './Contracts'
+import Contacts from '../Tab/Contacts'
+import Contracts from '../Tab/Contracts'
 
 const TabPanel = (props) => {
   const { children, value, index, ...other } = props;
