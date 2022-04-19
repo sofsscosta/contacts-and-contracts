@@ -1,6 +1,5 @@
 import * as React from 'react'
-import { Contacts, Contracts } from './components'
-import { Box } from '@mui/system';
+import { Contacts, Contracts, ContactDetail } from './components'
 import { Routes, Route } from 'react-router';
 import './App.css';
 import Header from './components/Header'
@@ -15,6 +14,7 @@ const App = () => {
         <Routes>
           <Route exact path="/" element={<Contacts/>} />
           <Route path="/contacts" element={<Contacts/>} />
+          <Route path="/contacts/:id" element={<ContactDetail/>} />
           <Route path="/contracts" element={<Contracts/>} />
         </Routes>
       </div>
