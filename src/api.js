@@ -41,6 +41,7 @@ const getContact = async id => {
     //     return data.records
     // }
     // else throw new Error('Unable to retrieve data')
+    return mocks.find(el => el.id === id)
 }
 const getContracts = () => {}
 

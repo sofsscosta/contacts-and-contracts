@@ -56,7 +56,7 @@ const ResponsiveDrawer = ({ drawerWidth, headerHeight }) => {
       </Box>
       <Box
         component="main"
-        sx={{ flexGrow: 1, p: 3, width: `calc(100% - ${drawerWidth}px)`, mt:2}}
+        sx={{ flexGrow: 1, p: 3, width: `calc(100% - ${drawerWidth}px)`, mt:5}}
       >
       </Box>
     </Box>

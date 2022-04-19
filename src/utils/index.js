@@ -11,8 +11,8 @@ const processContact = (rawData) => {
         nif: rawData.field_6,
         role: rawData.field_7,
         dateOfBirth: rawData.field_4,
-        contracts: rawData.field_1,
-        contacts: rawData.field_8
+        contracts: rawData.field_1_raw,
+        contacts: rawData.field_8_raw
     }
 }
 
