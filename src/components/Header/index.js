@@ -20,8 +20,8 @@ const ResponsiveDrawer = ({ drawerWidth, headerHeight }) => {
       <Divider/>
       <List>
         {menuOptions.map((text, index) => (
-            <Link to={`/${text}`}>
-                <ListItem button key={index}>
+            <Link to={`/${text}`} key={index}>
+                <ListItem button>
                     <ListItemText primary={capitalizeFirstLetter(text)} />
                 </ListItem>
             </Link>

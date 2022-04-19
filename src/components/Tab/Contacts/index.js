@@ -18,27 +18,45 @@ const Contacts = () => {
   }, [contacts])
 
     const columns = [
-        { field: 'id', headerName: 'ID' },
+        { field: 'id', headerName: 'ID', flex: 1 },
         {
             field: 'firstName',
             headerName: 'First name',
             editable: true,
+            flex: 1
         },
         {
             field: 'lastName',
             headerName: 'Last name',
             editable: true,
+            flex: 1
         },
         {
             field: 'nif',
             headerName: 'NIF',
             editable: true,
+            flex: 1
+        },
+        {
+            field: 'role',
+            headerName: 'Role',
+            type: 'select',
+            valueOptions: ['Teacher', 'Student'],
+            editable: true,
+            flex: 1
         },
         {
             field: 'dateOfBirth',
             headerName: 'Date of Birth',
             type: 'date',
+            editable: true,
+            flex: 1
+        },
+        {
+            field: 'contacts',
+            headerName: 'Contacts',
             editable: false,
+            flex: 1
         },
         {
             field: 'age',
@@ -48,6 +66,7 @@ const Contacts = () => {
             valueGetter: (params) =>
             //calculate age from date of birth
             `${params.row.firstName || ''} ${params.row.lastName || ''}`,
+            flex: 1
         },
         {
             field: 'fullName',
@@ -56,10 +75,11 @@ const Contacts = () => {
             sortable: false,
             valueGetter: (params) =>
             `${params.row.firstName || ''} ${params.row.lastName || ''}`,
+            flex: 1
         },
     ];
 
-    const newRows = () => {
+    const newRows = (() => {
         const rows = []
         for (let i = 0; i < contacts.length; i++) {
             let basePerson = {
@@ -70,22 +90,23 @@ const Contacts = () => {
               nif: contacts[i].field_6,
               role: contacts[i].field_7,
               dateOfBirth: contacts[i].field_4,
-              contracts: contacts[i].field_1
+              contracts: contacts[i].field_1,
+              contacts: contacts[i].field_8
             }
-            switch(basePerson.role) {
-                case('Student'): 
-                    basePerson = {...basePerson, teachers: [contacts[i].field_8_raw]}
-                break;
-                case('Teacher'): 
-                    basePerson = {...basePerson, students: contacts[i].field_8}
-                break;
-                default: return basePerson
-            }
+            // switch(basePerson.role) {
+            //     case('Student'): 
+            //         basePerson = {...basePerson, teachers: [contacts[i].field_8_raw]}
+            //     break;
+            //     case('Teacher'): 
+            //         basePerson = {...basePerson, students: contacts[i].field_8}
+            //     break;
+            //     default: return basePerson
+            // }
             rows.push(basePerson)
         }
-        console.log(rows)
+        console.log('rows',rows)
         return rows
-    }  
+    })()
 
     // const rows = [
     //     { id: 1, lastName: 'Snow', firstName: 'Jon', nif: 222333444, age: 35 },
@@ -102,7 +123,7 @@ const Contacts = () => {
   return (
     <>
       <DataGrid
-        rows={newRows()}
+        rows={newRows}
         columns={columns}
         checkboxSelection
         disableSelectionOnClick
