@@ -5,8 +5,8 @@ import React, {
   useState,
   useCallback,
 } from "react";
-import { useParams } from "react-router";
-import { getContact } from "../../api";
+import { useLocation, useParams } from "react-router";
+import { getContact, getContactEmail } from "../../api";
 import {
   TextField,
   Box,
@@ -22,9 +22,12 @@ import { processContact } from "../../utils";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import Modal from "../EmailModal";
 
 const ContactDetail = () => {
   const { id } = useParams();
+  const location = useLocation()
+      console.log(location)
 
   const [contact, setContact] = useState({
     id: 0,
@@ -38,10 +41,19 @@ const ContactDetail = () => {
     contracts: "",
     contacts: "",
   });
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [contactEmail, setContactEmail] = useState('')
 
   const getAge = () => 20;
 
-  const openModal = () => {};
+  const openModal = async (selectedContactId) => {
+      const contactEmail = await getContactEmail(selectedContactId)
+      setContactEmail(contactEmail)
+      console.log(contactEmail)
+      setIsModalOpen(true)
+  };
+
+  const closeModal = () => setIsModalOpen(false);
 
   const handleChangeRole = (e) =>
     setContact({ ...contact, role: e.target.value });
@@ -149,12 +161,12 @@ const ContactDetail = () => {
               <MenuItem value={"Student"}>Student</MenuItem>
             </Select>
           </FormControl>
-          <TextField
+          {/* <TextField
             label="Contracts"
             variant="standard"
             value={contact.contracts}
             style={{ width: 300 }}
-          />
+          /> */}
         </Box>
       </Box>
       <Box>
@@ -163,7 +175,8 @@ const ContactDetail = () => {
           contact.contacts.map((el, index) => (
             <Box key={index} display={"flex"} flexDirection={"row"}>
               <Link to={`/contacts/${el.id}`}>{el.identifier}</Link>
-              <Button onClick={openModal}>Send Email</Button>
+              <Button onClick={() => openModal(el.id)}>Send Email</Button>
+              {isModalOpen && <Modal isModalOpen={isModalOpen} handleClose={closeModal} mailTo={contactEmail}/>}
             </Box>
           ))}
       </Box>

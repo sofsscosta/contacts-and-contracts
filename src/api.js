@@ -1,4 +1,5 @@
 import mocks from './mocks.json';
+import { processContact } from './utils';
 
 const getContacts = async () => {
     // const url = 'https://api.knack.com/v1/objects/object_3/records'
@@ -43,23 +44,28 @@ const getContact = async id => {
     // else throw new Error('Unable to retrieve data')
     return mocks.find(el => el.id === id)
 }
+
+const getContactEmail = async id => {
+    const data = mocks.find(el => el.id === id)
+    return processContact(data).email
+}
+
 const getContracts = () => {}
 
-const sendEmail = async ({ emailTo, subject, content }) => {
-    const data = { emailTo, subject }
-
+const sendEmail = async (data) => {
     const headers = new Headers()
-    headers.append("Content-Type", "application/json")
     
     const options = {
         method: 'POST',
         mode: 'cors',
         headers: {
+            ...headers,
             Accept: "application/json",
+            "Content-Type": "application/json"
         },
         body: JSON.stringify(data)
     }
-    await fetch("https://ens3wu5h3tk6f.x.pipedream.net/", options)
+    await fetch("https://hook.eu1.make.com/7aw205wwf3gkrd80e1nym25jg5ntntba", options)
 }
 
-export { getContacts, getContact, getContracts, sendEmail }
+export { getContacts, getContact, getContactEmail, getContracts, sendEmail }

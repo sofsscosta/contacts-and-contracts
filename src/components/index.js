@@ -1,11 +1,12 @@
-import Container from "./Container";
+
 import Contacts from './Grids/Contacts'
 import Contracts from './Grids/Contracts'
 import ContactDetail from './ContactDetail'
+import EmailModal from './EmailModal'
 
 export {
-    Container,
     Contacts,
     Contracts,
-    ContactDetail
+    ContactDetail,
+    EmailModal
 }
