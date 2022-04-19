@@ -1,0 +1,84 @@
+[
+    {
+        "id": "625d4f3c14a43a001edc32ea",
+        "field_3": "Maria Feliz",
+        "field_3_raw": {
+            "first": "Maria",
+            "middle": "",
+            "last": "Feliz",
+            "title": "",
+            "full": "Maria Feliz"
+        },
+        "field_4": "11/09/1991",
+        "field_4_raw": {
+            "date": "09/11/1991",
+            "date_formatted": "11/09/1991",
+            "hours": "12",
+            "minutes": "00",
+            "am_pm": "AM",
+            "unix_timestamp": 684547200000,
+            "iso_timestamp": "1991-09-11T00:00:00.000Z",
+            "timestamp": "09/11/1991 12:00 am",
+            "time": 720
+        },
+        "field_5": "<a href=\"mailto:sofiacosta2908+maria@gmail.com\">sofiacosta2908+maria@gmail.com</a>",
+        "field_5_raw": {
+            "email": "sofiacosta2908+maria@gmail.com",
+            "label": null
+        },
+        "field_6": 333444555,
+        "field_6_raw": 333444555,
+        "field_7": "Teacher",
+        "field_7_raw": "Teacher",
+        "field_8": "<span class=\"625d4f22ef732c0021439816\">Manuel Triste</span>",
+        "field_8_raw": [
+            {
+                "id": "625d4f22ef732c0021439816",
+                "identifier": "Manuel Triste"
+            }
+        ],
+        "field_9": "",
+        "field_9_raw": []
+    },
+    {
+        "id": "625d4f22ef732c0021439816",
+        "field_3": "Manuel Triste",
+        "field_3_raw": {
+            "first": "Manuel",
+            "middle": "",
+            "last": "Triste",
+            "title": "",
+            "full": "Manuel Triste"
+        },
+        "field_4": "12/05/2000",
+        "field_4_raw": {
+            "date": "05/12/2000",
+            "date_formatted": "12/05/2000",
+            "hours": "12",
+            "minutes": "00",
+            "am_pm": "AM",
+            "unix_timestamp": 958089600000,
+            "iso_timestamp": "2000-05-12T00:00:00.000Z",
+            "timestamp": "05/12/2000 12:00 am",
+            "time": 720
+        },
+        "field_5": "<a href=\"mailto:sofiacosta2908+manuel@gmail.com\">sofiacosta2908+manuel@gmail.com</a>",
+        "field_5_raw": {
+            "email": "sofiacosta2908+manuel@gmail.com",
+            "label": null
+        },
+        "field_6": 222333444,
+        "field_6_raw": 222333444,
+        "field_7": "Student",
+        "field_7_raw": "Student",
+        "field_8": "<span class=\"625d4f3c14a43a001edc32ea\">Maria Feliz</span>",
+        "field_8_raw": [
+            {
+                "id": "625d4f3c14a43a001edc32ea",
+                "identifier": "Maria Feliz"
+            }
+        ],
+        "field_9": "",
+        "field_9_raw": []
+    }
+]

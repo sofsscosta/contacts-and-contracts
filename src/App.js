@@ -1,11 +1,15 @@
 import * as React from 'react'
-import { Tabs, Container } from './components'
+import { Tabs, Container, Contacts, Contracts } from './components'
 import './App.css';
 
-const App = () => (
-  <Container>
-    <Tabs/>
-  </Container>
-)
+const App = () => {
+  return (
+    <Container>
+      <Tabs>
+        <Contacts/>
+        <Contracts/>
+      </Tabs>
+    </Container>
+)}
 
 export default App;

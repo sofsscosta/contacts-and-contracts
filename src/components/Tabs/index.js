@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
-import Contacts from '../Tab/Contacts'
-import Contracts from '../Tab/Contracts'
+import { tabsTitles } from '../constants';
 
 const TabPanel = (props) => {
-  const { children, value, index, ...other } = props;
+  const { children, value, index, tabsOptions, ...other } = props;
 
   return (
+    <>
     <div
       role="tabpanel"
       hidden={value !== index}
@@ -23,6 +23,7 @@ const TabPanel = (props) => {
         </Box>
       )}
     </div>
+    </>
   );
 }
 
@@ -40,17 +41,15 @@ const tabsProps = (index) => {
   };
 }
 
-const VerticalTabs = () => {
+const VerticalTabs = (props) => {
+
+  const { children } = props;
+
   const [value, setValue] = useState(0);
 
   const handleChange = (_, newValue) => {
     setValue(newValue);
   };
-
-  const options = [
-    { title: 'Contacts', content: <Contacts/> },
-    { title: 'Contracts', content: <Contracts/> }
-  ]
 
   return (
     <Box
@@ -61,16 +60,16 @@ const VerticalTabs = () => {
         variant="scrollable"
         value={value}
         onChange={handleChange}
-        aria-label="Vertical tabs example"
+        aria-label="Vertical tabs"
         sx={{ borderRight: 1, borderColor: 'divider' }}
       >
-        {options.map((el, index) => (
-          <Tab label={el.title} sx={{height: '20vh'}} {...tabsProps(index)} />
+        {tabsTitles.map((el, index) => (
+          <Tab label={el} sx={{height: '20vh'}} {...tabsProps(index)} />
         ))}
       </Tabs>
-        {options.map((el, index) => (
+        {children.map((child, index) => (
           <TabPanel key={index} value={value} index={index} style={{width: '80%'}}>
-            {el.content}
+            {child}
           </TabPanel>
         ))}
     </Box>
