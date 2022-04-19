@@ -45,4 +45,21 @@ const getContact = async id => {
 }
 const getContracts = () => {}
 
-export { getContacts, getContact, getContracts }
+const sendEmail = async ({ emailTo, subject, content }) => {
+    const data = { emailTo, subject }
+
+    const headers = new Headers()
+    headers.append("Content-Type", "application/json")
+    
+    const options = {
+        method: 'POST',
+        mode: 'cors',
+        headers: {
+            Accept: "application/json",
+        },
+        body: JSON.stringify(data)
+    }
+    await fetch("https://ens3wu5h3tk6f.x.pipedream.net/", options)
+}
+
+export { getContacts, getContact, getContracts, sendEmail }
