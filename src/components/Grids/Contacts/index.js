@@ -54,23 +54,11 @@ const Contacts = () => {
             editable: true,
             flex: 1
         },
-        // {
-        //     field: 'contacts',
-        //     headerName: 'Contacts',
-        //     editable: true,
-        //     flex: 1
-        // },
         {
             field: 'age',
             headerName: 'Age',
             type: 'number',
-            // upon updating date of birth, trigger webhook to calculate age and retrieve info from there
-            valueGetter: (params) =>
-            params.row.dateOfBirth
-            //calculate age from date of birth
-            // `${params.row.firstName || ''} ${params.row.lastName || ''}`
-            ,
-            flex: 1
+            editable: false,
         },
         {
             field: 'fullName',
@@ -83,14 +71,7 @@ const Contacts = () => {
         },
     ];
 
-    const newRows = (() => {
-        const rows = []
-        for (let i = 0; i < contacts.length; i++) {
-            rows.push(processContact(contacts[i]))
-        }
-        console.log('rows',rows)
-        return rows
-    })()
+    const newRows = contacts.map(el => processContact(el))
 
   return (
     <>

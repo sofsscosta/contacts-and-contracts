@@ -3,17 +3,19 @@ const capitalizeFirstLetter = (string) => {
 }
 
 const processContact = (rawData) => {
-    return {
+    const obj = {
         id: rawData.id,
         lastName: rawData.field_3_raw.last,
         firstName: rawData.field_3_raw.first,
         email: rawData.field_5_raw.email,
         nif: rawData.field_6,
         role: rawData.field_7,
-        dateOfBirth: rawData.field_4,
-        contracts: rawData.field_1_raw,
-        contacts: rawData.field_8_raw
+        dateOfBirth: rawData.field_4_raw.date,
+        age: rawData.field_12,
+        contracts: rawData.field_1_raw || [],
+        contacts: rawData.field_8_raw || []
     }
+    return obj
 }
 
 export { capitalizeFirstLetter, processContact }

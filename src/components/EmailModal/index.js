@@ -6,6 +6,7 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
+import { FormLabel, TextareaAutosize } from "@mui/material";
 import { sendEmail } from "../../api";
 import { FormControl } from '@mui/material';
 
@@ -47,8 +48,10 @@ const EmailModal = ({isModalOpen, handleClose, mailTo}) => {
                 type="text"
                 fullWidth
                 variant="standard"
+                style={{marginBottom: 30}}
             />
-            <TextField
+            <FormLabel htmlFor="content">Content</FormLabel>
+            <TextareaAutosize
                 margin="dense"
                 id="content"
                 label="Content"
@@ -56,8 +59,9 @@ const EmailModal = ({isModalOpen, handleClose, mailTo}) => {
                 onChange={(event) => updateForm('content', event)}
                 type="text"
                 fullWidth
-                multiline
                 variant="standard"
+                minRows={6}
+                placeholder="Content"
             />
           </FormControl>
         </DialogContent>
