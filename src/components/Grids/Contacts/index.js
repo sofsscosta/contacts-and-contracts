@@ -12,7 +12,6 @@ const Contacts = () => {
     (async () => {
       if (!contacts.length) {
         const retrievedContacts = await getContacts();
-        console.log(contacts);
         setContacts(retrievedContacts);
       }
     })();
