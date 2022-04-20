@@ -88,12 +88,11 @@ const updateAge = async ({ id, dateOfBirth }) => {
     },
     body: JSON.stringify({field_4: dateOfBirth}),
   };
-  console.log('options', options)
   const result = await fetch(url, options);
   if (result.ok) {
     const data = await result.json();
     console.log("data in api call", data);
-    return data.records;
+    return data;
   } else throw new Error("Unable to retrieve data");
 };
 
