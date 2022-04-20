@@ -17,4 +17,13 @@ const processContact = (rawData) => {
     }
 }
 
-export { capitalizeFirstLetter, processContact }
+const processContract = (rawData) => {
+    return {
+        id: rawData.id,
+        file: rawData.field_10_raw,
+        issuer: rawData.field_13_raw[0].identifier,
+        sender: rawData.field_14_raw[0].identifier,
+    }
+}
+
+export { capitalizeFirstLetter, processContact, processContract }
