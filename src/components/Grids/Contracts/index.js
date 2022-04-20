@@ -9,18 +9,17 @@ const columns = [
   {
     field: "issuer",
     headerName: "Requested by",
-    flex: 1,
+    flex: 0.5,
   },
   {
     field: "sender",
     headerName: "Requested To",
-    flex: 1,
+    flex: 0.5,
   },
   {
     field: "file",
     headerName: "File",
-    type: "link",
-    flex: 1,
+    flex: 1.5,
     renderCell: (params) => (
       <a target="_blank" href={params.value.url} rel="noreferrer">
         {params.value.label}
@@ -36,11 +35,12 @@ const Contracts = () => {
     (async () => {
       if (!contracts.length) {
         const retrievedContracts = await getContracts();
-        console.log(retrievedContracts);
+
         setContracts(retrievedContracts);
       }
     })();
-  }, [contracts]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const rows = contracts.map((el) => processContract(el));
 

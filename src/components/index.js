@@ -2,7 +2,7 @@
 import Contacts from './Grids/Contacts'
 import Contracts from './Grids/Contracts'
 import ContactDetail from './ContactDetail'
-import EmailModal from './EmailModal'
+import EmailModal from './Modal'
 
 export {
     Contacts,

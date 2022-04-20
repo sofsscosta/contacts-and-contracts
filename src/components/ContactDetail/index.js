@@ -14,7 +14,7 @@ import {
 } from "@mui/material";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { LocalizationProvider, DatePicker } from "@mui/x-date-pickers";
-import Modal from "../EmailModal";
+import Modal from "../Modal";
 import {
   getContact,
   getContactEmail,
@@ -73,15 +73,15 @@ const ContactDetail = () => {
       senderID,
       senderName,
     });
-    window.open(contract, "_blank");
+    fetchApi()
+    contract.includes('https://pdf-temp-files.s3.amazonaws.com/') && window.open(contract, "_blank");
   };
 
   const fetchApi = useCallback(async () => {
     const result = await getContact(id);
-    console.log("result", result);
     const processedContact = processContact(result);
     setContact(processedContact);
-    console.log("contact", contact);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [contact, id]);
 
   useMemo(() => {

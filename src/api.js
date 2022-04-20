@@ -1,9 +1,9 @@
-import contactsMock from "./mocks/contacts.json";
-import contractsMock from "./mocks/contracts.json";
+// import contactsMock from "./mocks/contacts.json";
+// import contractsMock from "./mocks/contracts.json";
 import { processContact } from "./utils";
 
 const getContacts = async () => {
-  if (process.env.REACT_APP_USE_MOCKS) return contactsMock;
+//   if (process.env.REACT_APP_USE_MOCKS) return contactsMock;
 
   const url = "https://api.knack.com/v1/objects/object_3/records";
 
@@ -26,8 +26,8 @@ const getContacts = async () => {
 };
 
 const getContact = async (id) => {
-  if (process.env.REACT_APP_USE_MOCKS)
-    return contactsMock.find((el) => el.id === id);
+//   if (process.env.REACT_APP_USE_MOCKS)
+//     return contactsMock.find((el) => el.id === id);
 
   const url = `https://api.knack.com/v1/objects/object_3/records/${id}`;
   const options = {
@@ -47,7 +47,7 @@ const getContact = async (id) => {
 };
 
 const updateAge = async ({ id, dateOfBirth }) => {
-  if (process.env.REACT_APP_USE_MOCKS) return;
+//   if (process.env.REACT_APP_USE_MOCKS) return;
 
   const url = `https://api.knack.com/v1/objects/object_3/records/${id}`;
   const options = {
@@ -65,16 +65,16 @@ const updateAge = async ({ id, dateOfBirth }) => {
   const result = await fetch(url, options);
 
   if (result.ok) {
-    const data = await result.json();
+      const data = await result.json();
     return data;
   } else throw new Error("Unable to retrieve data");
 };
 
 const getContactEmail = async (id) => {
-  if (process.env.REACT_APP_USE_MOCKS) {
-    const contact = contactsMock.find((el) => el.id === id);
-    return processContact(contact).email;
-  }
+//   if (process.env.REACT_APP_USE_MOCKS) {
+//     const contact = contactsMock.find((el) => el.id === id);
+//     return processContact(contact).email;
+//   }
 
   const allContacts = await getContacts();
   const data = allContacts.find((el) => el.id === id);
@@ -83,7 +83,8 @@ const getContactEmail = async (id) => {
 };
 
 const getContracts = async () => {
-  if (process.env.REACT_APP_USE_MOCKS) return contractsMock;
+    // console.log(process.env.REACT_APP_USE_MOCKS)
+    // if (process.env.REACT_APP_USE_MOCKS) { return contractsMock}
 
   const url = "https://api.knack.com/v1/objects/object_2/records";
 
@@ -97,10 +98,15 @@ const getContracts = async () => {
     },
   };
 
+  console.log('options', options)
+  
   const result = await fetch(url, options);
+  console.log('result', result)
 
   if (result.ok) {
+    console.log('result contracts', result)
     const data = await result.json();
+    console.log('data contracts', data)
     return data.records;
   } else throw new Error("Unable to retrieve data");
 };
