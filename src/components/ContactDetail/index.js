@@ -16,8 +16,9 @@ import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { LocalizationProvider, DatePicker } from "@mui/x-date-pickers";
 import Modal from "../EmailModal";
 import { getContact, getContactEmail, updateAge } from "../../api";
-import { processContact, processDate } from "../../utils";
+import { processContact } from "../../utils";
 import frLocale from "date-fns/locale/fr";
+import moment from "moment";
 
 const ContactDetail = () => {
   const { id } = useParams();
@@ -48,13 +49,16 @@ const ContactDetail = () => {
   const handleChangeRole = (e) =>
     setContact({ ...contact, role: e.target.value });
 
-  const handleChangeBirthday = (value) =>{
-    setContact({ ...contact, dateOfBirth: value });}
+  const handleChangeBirthday = (value) =>
+    setContact({ ...contact, dateOfBirth: value });
 
   const handlePickDate = async (value) => {
-    const updatedContact = await updateAge({ id: contact.id, dateOfBirth: value });
-    const { age, dateOfBirth } = processContact(updatedContact)
-    setContact({...contact, age, dateOfBirth })
+    const updatedContact = await updateAge({
+      id: contact.id,
+      dateOfBirth: moment(value).format("DD/MM/YYYY"),
+    });
+    const { age, dateOfBirth } = processContact(updatedContact);
+    setContact({ ...contact, age, dateOfBirth });
   };
 
   const fetchApi = useCallback(async () => {
