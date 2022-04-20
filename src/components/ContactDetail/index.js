@@ -15,7 +15,12 @@ import {
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { LocalizationProvider, DatePicker } from "@mui/x-date-pickers";
 import Modal from "../EmailModal";
-import { getContact, getContactEmail, updateAge, generateContract } from "../../api";
+import {
+  getContact,
+  getContactEmail,
+  updateAge,
+  generateContract,
+} from "../../api";
 import { processContact } from "../../utils";
 import frLocale from "date-fns/locale/fr";
 import moment from "moment";
@@ -61,10 +66,15 @@ const ContactDetail = () => {
     setContact({ ...contact, age, dateOfBirth });
   };
 
-  const sendContract = async ({senderID, senderName}) => {
-    const contract = await generateContract({issuerID: contact.id, issuerName: `${contact.firstName} ${contact.lastName}`, senderID, senderName})
-    window.open(contract, '_blank');
-  }
+  const sendContract = async ({ senderID, senderName }) => {
+    const contract = await generateContract({
+      issuerID: contact.id,
+      issuerName: `${contact.firstName} ${contact.lastName}`,
+      senderID,
+      senderName,
+    });
+    window.open(contract, "_blank");
+  };
 
   const fetchApi = useCallback(async () => {
     const result = await getContact(id);
@@ -187,7 +197,13 @@ const ContactDetail = () => {
           >
             <Link to={`/contacts/${el.id}`}>{el.identifier}</Link>
             <Button onClick={() => openModal(el.id)}>Send Email</Button>
-            <Button onClick={() => sendContract({senderID: el.id, senderName: el.identifier})}>Generate Contract</Button>
+            <Button
+              onClick={() =>
+                sendContract({ senderID: el.id, senderName: el.identifier })
+              }
+            >
+              Generate Contract
+            </Button>
             {isModalOpen && (
               <Modal
                 isModalOpen={isModalOpen}
@@ -205,24 +221,12 @@ const ContactDetail = () => {
       <Typography mb={1} fontSize={24}>
         Contracts
       </Typography>
-      {contact.contacts?.length &&
-        contact.contacts.map((el, index) => (
-          <Box
+      {contact.contracts?.length &&
+        contact.contracts.map((el, index) => (
+          <div
+            dangerouslySetInnerHTML={{ __html: el.identifier }}
             key={index}
-            display={"flex"}
-            flexDirection={"row"}
-            alignItems={"center"}
-          >
-            <Link to={`/contacts/${el.id}`}>{el.identifier}</Link>
-            <Button onClick={() => openModal(el.id)}>Download Contract</Button>
-            {isModalOpen && (
-              <Modal
-                isModalOpen={isModalOpen}
-                handleClose={closeModal}
-                mailTo={contactEmail}
-              />
-            )}
-          </Box>
+          />
         ))}
     </>
   );

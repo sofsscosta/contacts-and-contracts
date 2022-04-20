@@ -12,7 +12,7 @@ const processContact = (rawData) => {
         role: rawData.field_7,
         dateOfBirth: new Date(rawData.field_4_raw.unix_timestamp),
         age: rawData.field_12,
-        contracts: rawData.field_1_raw || [],
+        contracts: rawData.field_9_raw || [],
         contacts: rawData.field_8_raw || []
     }
 }
